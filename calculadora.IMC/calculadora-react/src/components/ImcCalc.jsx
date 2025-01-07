@@ -7,12 +7,12 @@ const ImcCalc = () => {
   const [weigth, setWeigth] = useState("");
 
   const clearForm = (e) => {
-    e.prventDefault();
+    e.preventDefault();
     setAltura("");
     setWeigth("");
   };
 
-  // função para poder colocar só numeros sem letras
+  // função para permitir apenas numeros e virgulas
   const digitosValidos = (text) => {
     return text.replace(/[^0-9,]/g, "");
   };
