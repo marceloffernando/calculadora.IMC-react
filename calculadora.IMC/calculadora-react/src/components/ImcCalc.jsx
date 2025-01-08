@@ -5,7 +5,8 @@ import "./ImcCalc.css";
 const ImcCalc = ({ calcImc }) => {
   const [altura, setAltura] = useState("");
   const [weigth, setWeigth] = useState("");
-
+  
+  // botão de limpar form
   const clearForm = (e) => {
     e.preventDefault();
     setAltura("");

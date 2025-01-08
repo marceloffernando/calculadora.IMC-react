@@ -14,8 +14,26 @@ function App() {
     const weigthFloat = +weigth.replace(",", ".");
     const alturaFloat = +altura.replace(",", ".");
 
+    // função do caulculo IMC
     const imcResult = (weigthFloat / (alturaFloat * alturaFloat)).toFixed(1);
     setImc(imcResult);
+
+    data.forEach((item) => {
+      if (imcResult >= item.min && imcResult <= item.max) {
+        setInfo(item.info);
+        setInfoClass(item.infoClass);
+      }
+    });
+    if (!info) return;
+  };
+
+  // função para o botão de voltar
+  const resetCalc = (e) => {
+    e.preventDefault();
+
+    setImc("");
+    setInfo("");
+    setInfoClass("");
   };
 
   const [imc, setImc] = useState("");
@@ -26,7 +44,17 @@ function App() {
     <>
       <div className="container">
         {/* se não tiver imc mostra(imcCalc) se tiver mostra (imcTable) */}
-        {!imc ? <ImcCalc calcImc={calcImc} /> : <ImcTable data={data} />}
+        {!imc ? (
+          <ImcCalc calcImc={calcImc} />
+        ) : (
+          <ImcTable
+            data={data}
+            imc={imc}
+            info={info}
+            infoClass={infoClass}
+            resetCalc={resetCalc}
+          />
+        )}
       </div>
     </>
   );
